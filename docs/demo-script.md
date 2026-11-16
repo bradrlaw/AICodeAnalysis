@@ -180,7 +180,7 @@ Two PRs in `bradrlaw/AICodeAnalysis-demo-labs`, each with a different job:
 | [**#1**](https://github.com/bradrlaw/AICodeAnalysis-demo-labs/pull/1) *Add notes and settings features* | Both full labs, 22 alerts | **Scale:** with >20 alerts CodeQL posts one summary, not inline comments. Also **Copilot code review** |
 
 1. **PR #2 → Files changed:** inline CodeQL comment on `flask-app/app.py` line 26 → the Autofix suggestion (parameterized query). Show the diff; *don't commit* (keep the demo reusable).
-   - If no suggestion is shown inline, click **Show more details** → alert page → **Generate fix** (takes ~30 s; do it before class).
+   - If no suggestion is shown inline, click **Show more details** → alert page → **Generate fix** (takes ~30 s; do it before class). This is web-UI only; the REST autofix API only works for default-branch alerts. Preflight shows a yellow `[WARN]` until it exists.
 2. **PR #1 → Checks:** CodeQL failed with 22 new alerts. Same results as our local SARIF.
 3. **PR #1 → Conversation → Copilot review** (already requested and posted: 20 issues). Scroll its summary and point at the ones **CodeQL missed**: *"Note lookup exposes private bodies without … ownership checks"* (IDOR), *"Recursive merge allows prototype pollution and admin bypass"* (the chain), hard-coded signing key, CSRF. It did **not** flag the `Math.random` reset token. 🎤 "Neither tool is complete. Layer them."
    - To re-run: Reviewers ⚙ → **Copilot** → re-request (1–3 minutes).

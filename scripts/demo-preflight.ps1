@@ -4,9 +4,11 @@
 #>
 $root = Split-Path -Parent $PSScriptRoot
 $fail = 0
-function Check($name, [scriptblock]$test, $hint) {
+$warn = 0
+function Check($name, [scriptblock]$test, $hint, [switch]$Optional) {
     $ok = $false; $err = $null; try { $ok = [bool](& $test) } catch { $err = $_.Exception.Message }
     if ($ok) { Write-Host "  [OK]   $name" -ForegroundColor Green }
+    elseif ($Optional) { Write-Host "  [WARN] $name  ->  $hint" -ForegroundColor Yellow; $script:warn++ }
     else { Write-Host "  [FAIL] $name  ->  $hint" -ForegroundColor Red; if ($err) { Write-Host "         ($err)" -ForegroundColor DarkGray }; $script:fail++ }
 }
 
@@ -39,7 +41,9 @@ foreach ($n in 1, 2) {
     Check "Demo PR #$n is open" { (gh pr view $n --repo bradrlaw/AICodeAnalysis-demo-labs --json state -q .state) -eq 'OPEN' } 'See docs\demo-script.md > Prep: GitHub'
 }
 Check 'Copilot review on PR #1' { gh api repos/bradrlaw/AICodeAnalysis-demo-labs/pulls/1/reviews -q '.[].user.login' | Select-String -SimpleMatch 'copilot' } 'Web UI: PR #1 > Reviewers > Copilot (takes 1-3 min)'
-Check 'Autofix on PR #2'        { gh api repos/bradrlaw/AICodeAnalysis-demo-labs/pulls/2/comments -q '.[].body' | Select-String -Pattern 'Autofix|```suggestion' } 'Optional: open the PR #2 alert (Show more details) and click Generate fix'
+Check 'Autofix on PR #2'        { gh api repos/bradrlaw/AICodeAnalysis-demo-labs/pulls/2/comments -q '.[].body' | Select-String -Pattern 'Autofix|```suggestion' } 'Optional: PR #2 > Files changed > alert "Show more details" > Generate fix (web UI only)' -Optional
 
 Write-Host ""
-if ($fail) { Write-Host "$fail check(s) failed." -ForegroundColor Red; exit 1 } else { Write-Host 'All demo prerequisites ready.' -ForegroundColor Green }
+if ($fail) { Write-Host "$fail check(s) failed." -ForegroundColor Red; exit 1 }
+elseif ($warn) { Write-Host "All required demo prerequisites ready ($warn optional warning(s))." -ForegroundColor Yellow }
+else { Write-Host 'All demo prerequisites ready.' -ForegroundColor Green }
