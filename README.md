@@ -33,6 +33,7 @@ scripts/
   demo-preflight.ps1         Checks every demo prerequisite (run ~30 min before the lecture)
   reset-demos.ps1            Recreates demo scratch state (refactoring repo, demo-output/)
   minimist-regression.ps1    Runs upstream's CVE-2021-44906 regression tests on 1.2.5 (red) and 1.2.6 (green)
+  build_editable_pptx.py     Rebuilds the deck as a native, editable PowerPoint in the same theme
 ```
 
 ## Quick start
@@ -44,7 +45,9 @@ scripts/
 # 2. Build the slides (HTML + PDF; PPTX optional)
 npm install
 npm run build            # → dist\lecture.html, dist\lecture.pdf
-npm run build:pptx       # → dist\lecture.pptx  (needs Chrome or Edge installed)
+npm run build:pptx       # → dist\lecture.pptx  (needs Chrome or Edge installed; each slide is an image)
+npm run build:pptx-editable  # → dist\lecture-editable.pptx  (native, editable text, tables and notes;
+                             #   needs: pip install -r scripts\requirements-slides.txt)
 npm run preview          # live-reload preview server
 
 # 3. Sanity-check the labs

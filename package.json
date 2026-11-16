@@ -9,6 +9,7 @@
     "build:html": "marp slides/lecture.md -o dist/lecture.html",
     "build:pdf": "marp slides/lecture.md --pdf --allow-local-files -o dist/lecture.pdf",
     "build:pptx": "marp slides/lecture.md --pptx --allow-local-files -o dist/lecture.pptx",
+    "build:pptx-editable": "python scripts/build_editable_pptx.py",
     "setup:targets": "powershell -ExecutionPolicy Bypass -File scripts/setup-targets.ps1"
   },
   "devDependencies": {
