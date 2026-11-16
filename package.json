@@ -1,0 +1,17 @@
+{
+  "name": "ai-code-analysis-lecture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UF lecture: AI-assisted code analysis (understanding, architecture, refactoring, security)",
+  "scripts": {
+    "preview": "marp --server slides",
+    "build": "npm run build:html && npm run build:pdf",
+    "build:html": "marp slides/lecture.md -o dist/lecture.html",
+    "build:pdf": "marp slides/lecture.md --pdf --allow-local-files -o dist/lecture.pdf",
+    "build:pptx": "marp slides/lecture.md --pptx --allow-local-files -o dist/lecture.pptx",
+    "setup:targets": "powershell -ExecutionPolicy Bypass -File scripts/setup-targets.ps1"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1"
+  }
+}

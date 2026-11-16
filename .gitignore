@@ -1,0 +1,14 @@
+# Cloned analysis targets (recreate with scripts/setup-targets.*)
+targets/
+
+# Build output
+node_modules/
+dist/
+*.sarif
+codeql-db*/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+labs/**/*.db
