@@ -1,7 +1,7 @@
 # Demo 2: Extracting Architecture & Design
 
 **Time on stage:** 6 minutes · **Targets:** `targets\express` (Express 4.21.2, JS) and optionally `targets\flask` (Flask 3.0.3, Python)
-**Tools:** Copilot Chat in VS Code (primary, for the visual Mermaid preview), Copilot CLI
+**Tools:** Copilot CLI (primary; writes Mermaid to a Markdown file), VS Code Markdown preview to render it. Copilot Chat `#codebase` works too.
 
 ## Goal
 
@@ -10,10 +10,12 @@ Go from code to **diagrams, patterns, and documented design decisions**, then sh
 ## Setup
 
 ```powershell
-code targets\express      # open as workspace; Copilot Chat → Ask mode
+cd C:\projects\AICodeAnalysisLecture
+copilot --deny-tool shell   # file writes still require your approval
+code .                      # to preview demo-output\*.md (Ctrl+Shift+V)
 ```
 
-Install a Mermaid preview extension (e.g., *Markdown Preview Mermaid Support*) so diagrams render live.
+In Copilot CLI, drop `#codebase` from the prompts below and add: *"Write the result to demo-output/express-architecture.md."* The *Markdown Preview Mermaid Support* extension (`bierner.markdown-mermaid`) renders the diagrams. Exact live steps are in [docs/demo-script.md](../../docs/demo-script.md).
 
 ---
 

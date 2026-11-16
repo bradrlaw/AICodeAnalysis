@@ -12,3 +12,6 @@ __pycache__/
 *.pyc
 .venv/
 labs/**/*.db
+
+# Files Copilot writes during live demos (reset with scripts/reset-demos.ps1)
+demo-output/

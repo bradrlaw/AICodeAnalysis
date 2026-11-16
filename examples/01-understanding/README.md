@@ -1,7 +1,7 @@
 # Demo 1: Understanding an Unfamiliar Codebase (TinyDB)
 
 **Time on stage:** 6 minutes · **Target:** `targets\tinydb` (TinyDB v4.8.0, ~2.3k LOC Python, MIT)
-**Tools:** GitHub Copilot CLI (primary), Ollama (optional 60-second comparison)
+**Tools:** GitHub Copilot CLI (read-only: `copilot --deny-tool write --deny-tool shell`), optional `/model` comparison
 
 ## Goal
 
@@ -11,7 +11,7 @@ Show that a good AI workflow goes **broad → narrow → verify**: get an orient
 
 ```powershell
 cd targets\tinydb
-copilot            # then Shift+Tab into plan mode, or launch with: copilot --plan
+copilot --deny-tool write --deny-tool shell   # read-only analysis session
 ```
 
 ---
@@ -101,13 +101,11 @@ cd targets\tinydb
 python -c "from tinydb import TinyDB; from tinydb.storages import MemoryStorage; db=TinyDB(storage=MemoryStorage); print(db.insert({'name':'Ada'}), db.all())"
 ```
 
-## Ollama comparison (optional, 60 seconds)
+## Model comparison (optional, 60 seconds)
 
-```powershell
-Get-Content tinydb\table.py -Raw | ollama run qwen2.5-coder:7b "You are given table.py from TinyDB. Explain _update_table and why it clears the query cache. Cite line numbers."
-```
+In the same Copilot CLI session, run `/model`, pick a different model, and re-ask Prompt 1.4 (hidden assumptions). Compare which in-memory state each model cites, and whether the citations are correct. Different models give different answers, which is why you verify.
 
-Discussion: the local model only sees the file you pipe in, with no repo navigation, and line numbers may be off since it can't see them. That's the trade-off between **privacy/offline use** and **agentic context gathering**.
+For a private/offline comparison with a local model, see [05-local-models](../05-local-models/README.md) (take-home).
 
 ## Pitfalls to call out
 

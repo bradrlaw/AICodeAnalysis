@@ -30,24 +30,22 @@ By the end of the lecture students should be able to:
 | 0:42 | 5 | **Attackers have AI too + Ethics** — defensive posture; REA & IP; responsible disclosure | Discussion | [ethics-and-defense.md](ethics-and-defense.md) |
 | 0:47 | 3 | **Takeaways & Q&A** | Summary, resources | — |
 
-> **Local models (Ollama)** are woven into Demo 1 or Demo 4 as a 60-second "same prompt, private model" comparison. Full exercises live in [05-local-models](../examples/05-local-models/README.md) as take-home work.
+> All live demos run in **GitHub Copilot CLI**; VS Code is used to display Mermaid diagrams, SARIF results, and diffs. The step-by-step run sheet is **[demo-script.md](demo-script.md)**. **Local models (Ollama)** are mentioned on the toolbox slide; exercises live in [05-local-models](../examples/05-local-models/README.md) as take-home work.
 
 ## Timing guardrails
 
-- Every live demo has a **pre-recorded fallback** (screenshot or saved output). Record these the day before using the exact prompts in `examples/`.
-- If running long, cut in this order: Flask half of Demo 2 → Ollama comparison → requests CVE (keep minimist).
+- Every live demo has a **pre-recorded fallback** saved under `examples/*/recorded/`.
+- If running long, cut in this order: Demo 2 proof/ADR steps → Demo 1 verify step → Demo 4 SARIF triage prompt → Bottle plan (keep minimist).
 - Keep terminals pre-opened in each target directory; font size ≥ 20pt.
 
 ## Pre-lecture checklist
 
-- [ ] `.\scripts\setup-targets.ps1` (clones pinned targets into `targets\`)
-- [ ] `npm install` then `npm run build` (slides → `dist\`)
-- [ ] Copilot CLI signed in (`copilot` → `/login`), model chosen (`/model`)
-- [ ] VS Code with Copilot Chat; workspace opened on `targets\express`
-- [ ] CodeQL CLI on PATH (`codeql version`) and databases **pre-built** for the labs (database creation is too slow to do live)
-- [ ] Ollama running with a code model pulled (e.g., `ollama pull qwen2.5-coder:7b`)
-- [ ] A throwaway GitHub repo with the vuln labs pushed and **code scanning + Copilot Autofix** enabled, with an open PR ready to show
-- [ ] Fallback outputs saved under each example's `recorded\` folder
+- [ ] `.\scripts\demo-preflight.ps1` is all green (tools, targets, venv, CodeQL DBs/SARIF, slides, demo PR)
+- [ ] `.\scripts\reset-demos.ps1` (fresh refactoring scratch repo + empty `demo-output\`)
+- [ ] Copilot CLI signed in (`copilot` → `/login`), model confirmed (`/model`), one terminal tab per demo
+- [ ] VS Code open on the repo with the Mermaid and SARIF Viewer extensions
+- [ ] Demo PR open in the browser: [bradrlaw/AICodeAnalysis-demo-labs#1](https://github.com/bradrlaw/AICodeAnalysis-demo-labs/pull/1) (CodeQL + Autofix + Copilot review)
+- [ ] Fallback outputs present under each example's `recorded\` folder
 
 ## Take-home assignment (optional)
 

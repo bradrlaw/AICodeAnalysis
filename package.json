@@ -12,6 +12,7 @@
     "setup:targets": "powershell -ExecutionPolicy Bypass -File scripts/setup-targets.ps1"
   },
   "devDependencies": {
-    "@marp-team/marp-cli": "^4.5.1"
+    "@marp-team/marp-cli": "^4.5.1",
+    "tape": "^5.10.3"
   }
 }

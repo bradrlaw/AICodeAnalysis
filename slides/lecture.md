@@ -241,10 +241,10 @@ Evidence: file:line for every claim;
 4. **Hidden assumptions:** "What breaks if two processes share `db.json`?"
 5. **Verify:** open two cited lines and run a one-liner
 
-<span class="muted">Optional: same question to a local model via Ollama. Compare.</span>
+<span class="muted">Optional: <code>/model</code>, switch models, ask again. Compare.</span>
 
 <!--
-Live in Copilot CLI, plan mode. Expected insight from step 2: every insert reads and rewrites the ENTIRE file. From step 4: the query cache and _next_id are per-instance, so a second writer leads to stale results and duplicate IDs; no file locking. The AI didn't "know" this; it found it because the question was pointed.
+Live in Copilot CLI, launched read-only: copilot --deny-tool write --deny-tool shell. Say why out loud (untrusted code, prompt injection). Expected insight from step 2: every insert reads and rewrites the ENTIRE file. From step 4: the query cache and _next_id are per-instance, so a second writer leads to stale results and duplicate IDs; no file locking. The AI didn't "know" this; it found it because the question was pointed.
 Fallback: examples/01-understanding/recorded/
 -->
 
@@ -255,7 +255,7 @@ Fallback: examples/01-understanding/recorded/
 - **Pointed questions find real insights**; generic ones produce summaries
 - Agents **navigate**: they found `__getattr__` forwarding we didn't mention
 - **Citations let you verify in seconds**, so always ask for them
-- Local model: good on the file you gave it, **blind to everything else**
+- Switch models and the answer changes: **verify, don't trust**
 
 ---
 
@@ -278,7 +278,7 @@ Fallback: examples/01-understanding/recorded/
 5. **Verify the diagram:** "quote the line that proves each arrow, or delete it"
 
 <!--
-Use VS Code Copilot Chat in Ask mode with #codebase so Mermaid renders.
+Copilot CLI writes demo-output/express-architecture.md (approve the write); open it in VS Code and press Ctrl+Shift+V so the Mermaid renders.
 Key facts: express.js createApplication returns a function and mixes in EventEmitter + application proto; request.js/response.js are Object.create(http.IncomingMessage/ServerResponse.prototype); router/index.js next() loop; layer.js handle_request try/catch → next(err).
 Version-drift trap: models often describe Express 5 router layout.
 -->
@@ -365,7 +365,7 @@ Bottle is single-file by design (easy vendoring). The best answer to "should we?
 2. **CodeQL** results (pre-built DB) → *"Which issues did CodeQL miss, and why?"*
 3. **Copilot Autofix** on a GitHub alert, and **Copilot code review** on the PR
 4. **Real CVE:** minimist 1.2.5 (CVE-2021-44906)
-   - It *already* blocked `__proto__`… but not `constructor.prototype`
+   - It *already* blocked `__proto__`… but not paths through a **function's** `constructor`
    - Compare the AI's fix with the **upstream fix**
    - **Variant analysis:** "Find everything shaped like this in *our* code"
 

@@ -22,6 +22,7 @@
 
 - **Chains matter.** F1 lets an attacker forge `session["user_id"]`, which makes F6 and F7 trivially worse. Ask students: *"Which single fix reduces the most risk?"*
 - **What tools tend to catch:**
-  - CodeQL (`python-security-extended`) reliably flags data-flow issues: F3, F8, F9, F10, F11, and usually F4/F5 and F2. It **won't** flag F6/F7/F12 well because they are *missing* logic, not tainted data flow.
+  - **Actual run (CodeQL 2.27.4, `python-security-extended`, 7 alerts):** F2 `py/weak-sensitive-data-hashing` (L53) · F3 `py/sql-injection` (L85) · F4 `py/template-injection` (L88) · F8 `py/path-injection` (L114) · F9 `py/command-line-injection` (L120) · F10 `py/unsafe-deserialization` (L127) · F11 `py/flask-debug` (L133).
+  - **CodeQL did NOT report:** F1 (hard-coded secret; secret scanning's job), F5 (stored XSS: the tainted source is the database, not the request), F6/F7 (missing authorization/authentication), F12 (CSRF). These are what AI review and humans must catch.
   - AI review usually finds the authorization problems (F6, F7) and the "chain" story that static analysis misses, but may **miss** issues or invent ones (e.g., claiming `/register` is SQL-injectable even though it's parameterized). **Use that as a teaching moment.**
-- Record what *your* run of each tool actually found in `examples/04-vulnerabilities/recorded/`. Results vary by model and version.
+- **Actual Copilot code review** (PR #1 in the demo repo): flagged F1, F2, F3, F4, F6, F7, F8, F9, F10, F11, and F12. That includes the IDOR and CSRF CodeQL missed.

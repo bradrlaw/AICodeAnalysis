@@ -18,5 +18,7 @@
 ## Teaching notes
 
 - **E3 → E4 is the "aha" chain.** Neither line looks dangerous on its own. Ask the AI: *"Trace whether any request can influence the result of `user.isAdmin` on line X."* This is a good showcase for reasoning-based analysis.
-- Connect E3 to the **minimist CVE-2021-44906** demo: the same bug class shows up in a real, popular library, and the first fix was incomplete (it blocked `__proto__` but not `constructor.prototype`).
-- CodeQL (`javascript-security-extended`) typically flags E2, E3, E5, E6, E7, E8, E9, and E1. E4 requires reasoning about the chain.
+- Connect E3 to the **minimist CVE-2021-44906** demo: the same bug class shows up in a real, popular library, and the first fix was incomplete (it blocked `__proto__` but not paths through a function's `constructor`).
+- **Actual run (CodeQL 2.27.4, `javascript-security-extended`, 15 alerts):** E2 `js/reflected-xss` (L35) · E3 `js/prototype-polluting-assignment` (L25, L28), `js/prototype-pollution-utility` (L28), `js/remote-property-injection` (L25, L28, L40, L70) · E5 `js/path-injection` (L53) · E6 `js/command-line-injection` (L57) · E7 `js/redos` (L64), `js/polynomial-redos` (L65) · E9 `js/server-side-unvalidated-url-redirection` (L75) · E10 `js/missing-rate-limiting` (L52, L56).
+- **CodeQL did NOT report:** E1 (hard-coded key; that's secret scanning's job), **E4** (the `isAdmin` authorization chain requires reasoning), E8 (`Math.random` token; `js/insecure-randomness` didn't fire here). These are the gaps AI review should fill. Check whether it does.
+- **Actual Copilot code review** (PR #1 in the demo repo): flagged E1, E2, E3 → E4 (*"Recursive merge allows prototype pollution and admin bypass"*), E5, E6, E7, E9, plus unauthenticated settings access. It **missed E8**, so neither tool alone is complete.
