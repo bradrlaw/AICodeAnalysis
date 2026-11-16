@@ -1,33 +1,27 @@
 ---
 marp: true
-theme: default
+theme: aica
 paginate: true
 size: 16:9
 title: AI-Assisted Code Analysis
 description: Using AI tools and models to understand, document, refactor, and secure codebases
-style: |
-  section { font-size: 26px; }
-  section.lead h1 { font-size: 56px; }
-  section.small { font-size: 21px; }
-  code, pre { font-size: 0.78em; }
-  table { font-size: 0.8em; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
-  .muted { color: #666; }
-  .warn { color: #b00020; font-weight: bold; }
-  footer { color: #888; }
-footer: AI-Assisted Code Analysis · University of Florida
+footer: AI-Assisted Code Analysis &nbsp;|&nbsp; University of Florida
 ---
 
 <!-- _class: lead -->
 <!-- _paginate: false -->
+<!-- _header: Guest lecture · University of Florida -->
 
 # AI-Assisted Code Analysis
-## Understanding, Architecture, Refactoring & Security, with AI as a power tool, not an oracle
+## Understanding, architecture, refactoring and security, with AI as a **power tool, not an oracle**
+### Brad Lawrence · Principal Architect, Microsoft &nbsp;·&nbsp; [Date]
 
-<br>
-
-**Brad Lawrence** · Principal Architect, Microsoft
-University of Florida · [Date]
+<div class="cards">
+<div><span class="label">Understand</span><b>Read code fast</b><p>Orientation maps, traces, hidden assumptions.</p></div>
+<div><span class="label">Architecture</span><b>Code to design</b><p>Diagrams and patterns, every arrow proven.</p></div>
+<div><span class="label">Refactor</span><b>Change safely</b><p>Tests first, one small AI step at a time.</p></div>
+<div><span class="label">Secure</span><b>Find and fix</b><p>AI review, CodeQL and Autofix, real CVEs.</p></div>
+</div>
 
 <!--
 Welcome. 50 minutes: about half concepts, half live demos. All prompts and code are in the course repo, so students don't need to copy anything down.
@@ -35,6 +29,7 @@ Welcome. 50 minutes: about half concepts, half live demos. All prompts and code 
 
 ---
 
+<!-- header: "Introduction" -->
 # Monday morning
 
 > You've just joined a team. You own a **50,000-line** service you've never seen.
@@ -78,6 +73,7 @@ By the end you should be able to:
 
 ---
 
+<!-- header: "01 / How AI reads code" -->
 <!-- _class: lead -->
 
 # Part 1
@@ -140,6 +136,7 @@ Modern tools combine all three.
 
 ---
 
+<!-- header: "02 / The toolbox" -->
 <!-- _class: lead -->
 
 # Part 2
@@ -168,6 +165,7 @@ Modern tools combine all three.
 
 ---
 
+<!-- header: "03 / Prompting for analysis" -->
 <!-- _class: lead -->
 
 # Part 3
@@ -223,6 +221,7 @@ Evidence: file:line for every claim;
 
 ---
 
+<!-- header: "04 / Demo · Understanding" -->
 <!-- _class: lead -->
 
 # Demo 1
@@ -259,6 +258,7 @@ Fallback: examples/01-understanding/recorded/
 
 ---
 
+<!-- header: "05 / Demo · Architecture" -->
 <!-- _class: lead -->
 
 # Demo 2
@@ -294,6 +294,7 @@ Version-drift trap: models often describe Express 5 router layout.
 
 ---
 
+<!-- header: "06 / Demo · Refactoring" -->
 <!-- _class: lead -->
 
 # Demo 3
@@ -336,6 +337,7 @@ Bottle is single-file by design (easy vendoring). The best answer to "should we?
 
 ---
 
+<!-- header: "07 / Demo · Vulnerabilities" -->
 <!-- _class: lead -->
 
 # Demo 4
@@ -386,6 +388,7 @@ requests CVE-2023-32681 is the take-home: unguided "find bugs" usually misses it
 
 ---
 
+<!-- header: "08 / Defense and ethics" -->
 <!-- _class: lead -->
 
 # Part 8
@@ -494,6 +497,7 @@ UF context: Student Honor Code and UF IT acceptable-use policy. **No testing of 
 
 ---
 
+<!-- header: "09 / Takeaways" -->
 <!-- _class: lead -->
 
 # Takeaways
@@ -528,6 +532,7 @@ UF context: Student Honor Code and UF IT acceptable-use policy. **No testing of 
 
 <!-- _class: lead -->
 <!-- _paginate: false -->
+<!-- _header: Thank you -->
 
 # Questions?
 

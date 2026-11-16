@@ -1,0 +1,4 @@
+{
+  "markdown.marp.themes": ["./slides/themes/aica.css"],
+  "markdown.marp.enableHtml": true
+}

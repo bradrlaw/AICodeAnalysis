@@ -11,6 +11,7 @@
 
 ```text
 slides/lecture.md            Marp slide deck, with speaker notes in HTML comments
+slides/themes/aica.css       Custom Marp theme (blue top bar, section eyebrows, stripe cards); wired up via .marprc.yml
 docs/
   agenda.md                  Timed agenda, learning objectives, pre-lecture checklist, take-home
   demo-script.md             Presenter cheat sheet: exact commands and prompts for every live demo

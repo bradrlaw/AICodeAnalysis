@@ -1,0 +1,218 @@
+/*
+ * @theme aica
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ *
+ * Clean "Microsoft blue" look: white canvas, blue top bar, uppercase eyebrow label
+ * (set per section with the Marp `header` directive), navy titles, light cards with a
+ * colored left stripe, pale-blue callout panels, and a hairline footer.
+ */
+@import 'default';
+
+:root {
+  --blue: #0078d4;
+  --teal: #14b8a6;
+  --teal-text: #0e8f82;
+  --purple: #7454b7;
+  --amber: #d98e04;
+  --amber-text: #b26a00;
+  --navy: #0b1730;
+  --slate: #33465c;
+  --gray: #5c6b7c;
+  --card: #f7fafd;
+  --panel: #eaf3fb;
+  --line: #c9daea;
+  --font: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Aptos Display', 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Cascadia Mono', 'Cascadia Code', Consolas, monospace;
+}
+
+section {
+  background: #fff;
+  color: var(--slate);
+  font-family: var(--font);
+  font-size: 23px;
+  line-height: 1.38;
+  padding: 66px 53px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+section.small { font-size: 19px; }
+
+/* Blue bar across the top */
+section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 13px;
+  background: var(--blue);
+}
+
+/* Eyebrow label (Marp `header`) */
+header {
+  position: absolute;
+  top: 30px; left: 53px; right: 53px;
+  padding: 0;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* Hairline footer + page number */
+footer {
+  position: absolute;
+  left: 53px; right: 53px; bottom: 14px;
+  padding: 9px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--gray);
+}
+section::after {
+  right: 53px; bottom: 15px;
+  padding: 0;
+  font-size: 12px;
+  color: var(--gray);
+  font-family: var(--font);
+}
+
+/* Type */
+h1, h2, h3, h4 { color: var(--navy); font-family: var(--font-display); margin: 0; }
+section h1 {
+  font-size: 37px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+section h2 { font-size: 26px; font-weight: 700; margin: 0 0 12px; border: 0; padding: 0; }
+section h3 { font-size: 22px; font-weight: 700; margin: 0 0 8px; }
+h1 strong, h2 strong { color: var(--blue); }
+p { margin: 0 0 12px; }
+strong { color: var(--navy); }
+a { color: var(--blue); text-decoration: none; }
+ul, ol { margin: 0 0 12px; padding-left: 1.2em; }
+li { margin: 3px 0; }
+li::marker { color: var(--blue); font-weight: 700; }
+
+/* Code */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: #eef3f8;
+  color: var(--navy);
+  border-radius: 4px;
+  padding: 0.05em 0.3em;
+}
+pre {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 0 0 14px;
+  font-size: 0.74em;
+  line-height: 1.35;
+  box-shadow: none;
+}
+pre code { background: none; padding: 0; font-size: 1em; color: var(--navy); }
+
+/* Tables: card-like, blue label header row */
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0 0 14px;
+  font-size: 0.78em;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card);
+}
+table th, table td { border: 0; padding: 7px 12px; text-align: left; vertical-align: top; }
+table th {
+  background: var(--panel);
+  color: var(--blue);
+  font-size: 0.82em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+table tr, table tr:nth-child(2n) { background: transparent; }
+table td { border-top: 1px solid #e3ecf5; color: var(--slate); }
+table tr:first-child td { border-top: 0; }
+
+/* Callout panel */
+blockquote {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 7px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  color: var(--navy);
+  padding: 12px 18px;
+  margin: 6px 0 14px;
+}
+blockquote::before, blockquote::after { content: none; }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* Two-column layout → stripe cards */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 14px; }
+.cols > div, .cards > div {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 7px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px 4px;
+  min-width: 0;
+}
+.cols > div:nth-child(2), .cards > div:nth-child(2) { border-left-color: var(--teal); }
+.cards > div:nth-child(3) { border-left-color: var(--purple); }
+.cards > div:nth-child(4) { border-left-color: var(--amber); }
+
+/* Four-up cards (title slide) */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 28px; }
+.cards > div { padding: 14px 16px; }
+.cards .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+.cards > div:nth-child(2) .label { color: var(--teal-text); }
+.cards > div:nth-child(3) .label { color: var(--purple); }
+.cards > div:nth-child(4) .label { color: var(--amber-text); }
+.cards b { display: block; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+.cards p { font-size: 15px; margin: 0; color: var(--slate); line-height: 1.35; }
+
+.muted { color: var(--gray); }
+.warn { color: #b4232a; font-weight: 700; }
+
+/* Title and section-divider slides */
+section.lead { padding-top: 150px; justify-content: flex-start; }
+section.lead header { top: 124px; }
+section.lead h1 { font-size: 60px; margin-bottom: 0; }
+section.lead h1::after {
+  content: '';
+  display: block;
+  width: 50px; height: 7px;
+  background: var(--blue);
+  margin: 18px 0 20px;
+}
+section.lead h2 { font-size: 27px; font-weight: 400; color: var(--slate); font-family: var(--font); margin-bottom: 10px; }
+section.lead h2 strong { color: var(--navy); font-weight: 700; }
+section.lead h3 { font-size: 18px; font-weight: 400; color: var(--gray); font-family: var(--font); }
+section.lead p { color: var(--slate); }
+/* A lone `path` paragraph on a divider renders as a pill, like a repo link */
+section.lead p > code:only-child {
+  display: inline-block;
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+}
